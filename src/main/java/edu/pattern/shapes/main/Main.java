@@ -2,6 +2,7 @@ package edu.pattern.shapes.main;
 
 import edu.pattern.shapes.creator.TriangleFactory;
 import edu.pattern.shapes.creator.impl.TriangleFactoryImpl;
+import edu.pattern.shapes.exception.TriangleException;
 import edu.pattern.shapes.model.Triangle;
 import edu.pattern.shapes.model.Warehouse;
 
@@ -16,7 +17,12 @@ public class Main {
                 {7, 5, 4},
         };
         TriangleFactory factory = new TriangleFactoryImpl();
-        List<Triangle> result = factory.createTriangles(params);
+        List<Triangle> result = null;
+        try {
+            result = factory.createTriangles(params);
+        } catch (TriangleException e) {
+            //log
+        }
         System.out.println(result);
         Warehouse warehouse = Warehouse.getInstance();
         Triangle ob = result.get(0);
